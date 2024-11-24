@@ -19,7 +19,7 @@ const layout = ({ children }) => {
             <CategoryList />
           </Suspense>
         </div>
-        <div className="col-span-12 lg:col-span-8 xl:col-span-9 bg-blue-100">
+        <div className="col-span-12 lg:col-span-8 xl:col-span-9">
           {children}
         </div>
       </div>
