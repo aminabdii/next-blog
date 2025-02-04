@@ -13,7 +13,18 @@ const btnType = {
 
 const ButtonIcon = ({ children, onClick, className, variant, ...rest }) => {
   return (
-    <button onClick={onClick} className={`${className} ${btnType[variant]}`}>
+    <button
+      className={`
+    flex justify-center items-center p-1 rounded-md gap-x-1 text-xs lg:text-sm 
+    [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-inherit
+    transition-all duration-300 ease-out
+    ${className}
+    ${btnType[variant]}
+    
+    `}
+      onClick={onClick}
+      {...rest}
+    >
       {children}
     </button>
   );

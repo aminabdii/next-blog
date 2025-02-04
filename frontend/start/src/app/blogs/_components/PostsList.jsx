@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Avatar } from "@/ui/Avatar";
 import Author from "./Author";
 import PostInteraction from "./PostInteraction";
+import { toPersianNumbers } from "@/hooks/convertNumber";
 
 async function PostsList() {
   // await new Promise((res) => setTimeout(() => res(), 3000));
@@ -17,7 +18,9 @@ async function PostsList() {
     },
   } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/post/list`);
 
-  console.log(posts);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/list`);
+  const data = await response.json();
+  console.log(data, "data");
 
   return posts?.length > 0 ? (
     <div className="grid grid-cols-12 gap-8">
@@ -36,13 +39,13 @@ async function PostsList() {
                 <ClockIcon className="w-4 h-4 text-secondary-700" />
                 <div>
                   <p className="text-xs text-secondary-700">
-                    خواندن : {post.readingTime} دقیقه
+                    خواندن : {toPersianNumbers(post.readingTime)} دقیقه
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <PostInteraction />
+          <PostInteraction post={post} />
         </div>
       ))}
     </div>
